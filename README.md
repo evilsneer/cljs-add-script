@@ -8,15 +8,8 @@ A ClojureScript library designed to dynamically add \<script\> tag to html DOM u
 
 ```clojure
 (ns app.core
-  (:require [cljs-add-script.core :refer [add-script!]]))
+  (:require [cljs-add-script.core :refer [add-script!]]))    
 
-; callback function 
-;; login is written somewhere else
-(defn ^:export onTelegramAuth [user]
-  (let [username (.-username user)
-        id (.-id user)]
-    (login username)))
-    
 
 (add-script! "https://telegram.org/js/telegram-widget.js?5"
     (fn [e]
@@ -25,7 +18,7 @@ A ClojureScript library designed to dynamically add \<script\> tag to html DOM u
      :data-telegram-login ""
      :data-size           "medium"
      :data-userpic        "false"
-     :data-onauth         "app.core.onTelegramAuth(user)"
+     :data-onauth         "<your function here>"
      :data-radius         "5"
      :parent-sel          :#tg-login-fieldset})
 ```
@@ -37,7 +30,7 @@ which produces
 ```html
 <script type="text/javascript" async="async" data-telegram-login="" 
     data-size="medium" data-userpic="false" 
-    data-onauth="app.core.onTelegramAuth(user)" data-radius="5" 
+    data-onauth="<your function here>" data-radius="5" 
     src="https://telegram.org/js/telegram-widget.js?5"></script>
 ```
 
