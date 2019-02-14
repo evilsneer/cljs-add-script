@@ -13,7 +13,7 @@
   ;(println "dommy/set-attr!" elem key val)
   (dommy/set-attr! elem key val))
 
-(defn set-attrs [element attrs]
+(defn- set-attrs [element attrs]
   (reduce reducer element attrs))
 
 ; <script src="src" type=":type" onload="cb"></script>
@@ -25,7 +25,6 @@
      (if parent-node (->                                    ; create a script element
                        (dommy/create-element :script)
                        ; set the type attribute
-                       ;(dommy/set-attr! :type (:type opts))
                        (set-attrs (dissoc opts :parent-sel))
                        ; set src attribute
                        (dommy/set-attr! :src src)
@@ -38,9 +37,3 @@
    (add-script! src cb nil))
   ([src]
    (add-script! src nil)))
-
-
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
