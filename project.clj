@@ -10,7 +10,8 @@
 
   :profiles {:dev
              {:plugins      [[lein-doo "0.1.10"]
-                             [lein-cljsbuild "1.1.6"]]
+                             [lein-cljsbuild "1.1.6"]
+                             [lein-pprint "1.2.0"]]
               :dependencies [[reagent "0.5.1" :exclusions [cljsjs/react]]
                              [cljsjs/react-with-addons "0.13.3-0"]
                              [cljs-react-test "0.1.3-SNAPSHOT"]
@@ -30,4 +31,17 @@
                    ["do" "clean" ["with-profile" "dev" "doo" "phantom" "test" "once"]]
             "deploy!" ^{:doc "Deploy if tests succeed."}
                    ;; Nested vectors are supported for the "do" task
-                   ["do" "test" ["deploy" "clojars"]]})
+                   ["do" "test" ["deploy" "clojars"]]}
+
+  :deploy-repositories [["releases"  {:sign-releases false :url "https://clojars.org/repo"}]
+                        ["snapshots" {:sign-releases false :url "https://clojars.org/repo"}]]
+
+  :release-tasks [["vcs" "assert-committed"]
+                  ["change" "version" "leiningen.release/bump-version" "release"]
+                  ["vcs" "commit"]
+                  ["vcs" "tag" "--no-sign"]
+                  ["deploy"]
+                  ["change" "version" "leiningen.release/bump-version"]
+                  ["vcs" "commit"]
+                  ["vcs" "push"]]
+  )
