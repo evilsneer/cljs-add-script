@@ -28,15 +28,13 @@
                                :main          cljs-add-script.runner
                                :optimizations :none}}}}
   :aliases {"test" ^{:doc "Clean and Test"}
-                   ["do" "clean" ["with-profile" "dev" "doo" "phantom" "test" "once"]]
-            "deploy!" ^{:doc "Deploy if tests succeed."}
-                   ;; Nested vectors are supported for the "do" task
-                   ["do" "test" ["deploy" "clojars"]]}
+                   ["do" "clean" ["with-profile" "dev" "doo" "phantom" "test" "once"]]}
 
   :deploy-repositories [["releases"  {:sign-releases false :url "https://clojars.org/repo"}]
                         ["snapshots" {:sign-releases false :url "https://clojars.org/repo"}]]
 
-  :release-tasks [["vcs" "assert-committed"]
+  :release-tasks [["test"]
+                  ["vcs" "assert-committed"]
                   ["change" "version" "leiningen.release/bump-version" "release"]
                   ["vcs" "commit"]
                   ["vcs" "tag" "--no-sign"]
