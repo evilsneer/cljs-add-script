@@ -10,7 +10,6 @@
    :type       "text/javascript"})
 
 (defn reducer [elem [key val]]
-  ;(println "dommy/set-attr!" elem key val)
   (dommy/set-attr! elem key val))
 
 (defn- set-attrs [element attrs]

@@ -2,7 +2,9 @@
 
 [![Clojars Project](https://img.shields.io/clojars/v/cljs-add-script.svg)](https://clojars.org/cljs-add-script)
 
-A ClojureScript library designed to dynamically add \<script\> tag to html DOM using https://github.com/plumatic/dommy
+A ClojureScript library designed to dynamically add \<script\> tag to html DOM using [prismatic/dommy](https://github.com/plumatic/dommy)
+
+It actually helps handling dynamically adding by DOM scripts social buttons such as [Telegram Login](https://telegram.org/blog/login) and etc... 
 
 ## Usage
 
@@ -34,7 +36,11 @@ which produces
     src="https://telegram.org/js/telegram-widget.js?5"></script>
 ```
 
+## Tests
 
+```bash
+lein clean && lein with-profile dev doo phantom test once
+```
 
 ## License
 
