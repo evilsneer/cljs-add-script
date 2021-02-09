@@ -4,7 +4,7 @@
 
 A ClojureScript library designed to dynamically add \<script\> tag to html DOM using [prismatic/dommy](https://github.com/plumatic/dommy)
 
-It actually helps handling dynamically adding by DOM scripts social buttons such as [Telegram Login](https://telegram.org/blog/login) and etc... 
+It actually helps handling dynamically adding (by DOM \<scripts\>) social buttons such as [Telegram Login](https://telegram.org/blog/login) and etc... 
 
 ## Usage
 
